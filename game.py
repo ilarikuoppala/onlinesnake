@@ -84,6 +84,10 @@ class Worm():
                   'arrowright': (1,0),
                   'arrowup': (0,-1),
                   'arrowdown': (0,1),
+                  'a': (-1,0),
+                  'd': (1,0),
+                  'w': (0,-1),
+                  's': (0,1),
         }
         try:
             newdirection = keymap[command]
