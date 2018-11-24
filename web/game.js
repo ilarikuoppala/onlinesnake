@@ -5,8 +5,9 @@ var wsurl = "ws://onlinesnake.fun:8765/";
 
 var canvas = document.createElement('canvas');
 canvas.setAttribute('width', 800);
-canvas.setAttribute('height', 800);
+canvas.setAttribute('height', 540);
 canvas.setAttribute('tabindex', 1);
+canvas.setAttribute('id', 'game-canvas')
 canvas.addEventListener('keydown', function(event) {
     if (event.key == 'F5') {
         location.reload();
