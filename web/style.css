@@ -1,0 +1,9 @@
+#game-canvas {
+    margin: auto;
+    pad: 0;
+    display: block;
+}
+
+#main-heading {
+    text-align: center;
+}
