@@ -89,7 +89,6 @@ class Worm():
                   'w': (0,-1),
                   's': (0,1),
         }
-
         try:
             newdirection = keymap[command]
         except KeyError:
