@@ -1,7 +1,5 @@
-// Change this to match server address
-var wsurl = "ws://onlinesnake.fun:8765/";
-
-
+var wssurl = "wss://" + location.host + '/websocket/';
+var wsurl = "ws://" + location.host + '/websocket/';
 
 var canvas = document.createElement('canvas');
 canvas.setAttribute('width', 800);
@@ -27,7 +25,11 @@ var bodycolor = 'lightred';
 var bgcolor = 'white';
 var offset = 20;
 
-var ws = new WebSocket(wsurl);
+if (location.protocol == 'http:') {
+    var ws = new WebSocket(wsurl);
+} else {
+    var ws = new WebSocket(wssurl);
+};
 
 ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
