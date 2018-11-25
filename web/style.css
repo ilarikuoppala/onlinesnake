@@ -4,6 +4,6 @@
     display: block;
 }
 
-#main-heading {
+#main-heading, footer {
     text-align: center;
 }
