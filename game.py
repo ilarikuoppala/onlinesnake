@@ -74,6 +74,7 @@ class Worm():
     def __init__(self, game, player):
         self.blocks = [(0,0), (0,1), (0,2)]
         self.direction = (0,1)
+        self.newdirection = False
         self.game = game
         self.score = 0
         self.player = player
@@ -95,10 +96,14 @@ class Worm():
             return
         if newdirection[0] == self.direction[0] or newdirection[1] == self.direction[1]:
             return
-        self.direction = newdirection
+        if not self.newdirection:
+            self.newdirection = newdirection
 
     def move(self):
         head = self.blocks[-1]
+        if self.newdirection:
+            self.direction = self.newdirection
+            self.newdirection = False
         x, y = self.direction
         newhead = ( (head[0]+x) % self.game.xlimit, (head[1]+y) % self.game.ylimit )
         if newhead in self.game.full_blocks:
