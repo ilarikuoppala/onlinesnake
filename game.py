@@ -78,18 +78,15 @@ class Worm():
         self.player = player
         self.dead = False
         # Deciding a random direction for the Worm
-        xdir = random.randint(-1, 1)
-        if xdir == 0:
-            ydir = random.choice([-1, 1])
-        else:
-            ydir = 0
-        self.direction = (xdir, ydir)
+        directions = [(-1,0), (1,0), (0,-1), (0,1)]
+        self.direction = random.choice(directions)
+        self.newdirection = False
         self.blocks = []
         # Random start point and generating snake
         # The Worm's initial position shouldn't be over the edge
         start_position = (random.randint(0 + length, self.game.xlimit - length), random.randint(0 + length, self.game.ylimit - length))
         for h in range(length):
-            self.blocks.append((start_position[0] + (h * xdir), start_position[1] + (h * ydir)))
+            self.blocks.append((start_position[0] + (h * self.direction[0]), start_position[1] + (h * self.direction[1])))
 
 
     def command(self, command):
