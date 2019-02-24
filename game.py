@@ -40,10 +40,19 @@ class Game():
 
     @property
     def full_blocks(self):
-        blocks = []
+        blocks = set()
         for player in self.active_players:
-            blocks += self.worms[player].blocks
+            blocks.update(self.worms[player].blocks)
         return blocks
+
+    @property
+    def free_blocks(self):
+        all_blocks = set()
+        for i in range(self.xlimit):
+            for j in range(self.ylimit):
+                all_blocks.add((i,j))
+        free_blocks = set(all_blocks) - self.full_blocks
+        return free_blocks
 
     def command(self, command, player):
         self.worms[player].command(command.lower())
@@ -68,7 +77,9 @@ class Game():
         return json.dumps({'worms': worms, 'scores': scores, 'treats': self.treats, 'clear': clear})
 
     def treat(self):
-        self.treats.append((random.randint(0,self.xlimit-1), random.randint(0,self.ylimit-1)))
+        blocks = list(self.free_blocks)
+        random.shuffle(blocks)
+        self.treats.append(blocks[0])
 
 class Worm():
     def __init__(self, game, player):
