@@ -72,13 +72,25 @@ class Game():
 
 class Worm():
     def __init__(self, game, player):
-        self.blocks = [(0,0), (0,1), (0,2)]
-        self.direction = (0,1)
-        self.newdirection = False
+        length = 3 # initial length of the Worm
         self.game = game
         self.score = 0
         self.player = player
         self.dead = False
+        # Deciding a random direction for the Worm
+        xdir = random.randint(-1, 1)
+        if xdir == 0:
+            ydir = random.choice([-1, 1])
+        else:
+            ydir = 0
+        self.direction = (xdir, ydir)
+        self.blocks = []
+        # Random start point and generating snake
+        # The Worm's initial position shouldn't be over the edge
+        start_position = (random.randint(0 + length, self.game.xlimit - length), random.randint(0 + length, self.game.ylimit - length))
+        for h in range(length):
+            self.blocks.append((start_position[0] + (h * xdir), start_position[1] + (h * ydir)))
+
 
     def command(self, command):
         keymap = {'arrowleft': (-1,0),
