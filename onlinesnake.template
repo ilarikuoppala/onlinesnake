@@ -3,7 +3,7 @@ server server:8765;
 }
 
 server {
-listen 80;
+listen 80 default_server;
 listen [::]:80 ipv6only=on;
 
 server_name onlinesnake.fun;
@@ -16,7 +16,7 @@ try_files $uri $uri/ =404;
 }
 
 location /websocket/ {
-proxy_pass http://ws;
+proxy_pass http://ws/;
 proxy_http_version 1.1;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";

@@ -1,5 +1,8 @@
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
+if (location.protocol == 'file:') {
+    var wsurl = "ws://localhost:8080/websocket/";
+}
 
 var canvas = document.createElement('canvas');
 canvas.setAttribute('width', 800);
@@ -25,7 +28,7 @@ var bodycolor = 'lightred';
 var bgcolor = 'white';
 var offset = 20;
 
-if (location.protocol == 'http:') {
+if (location.protocol == 'http:' || location.protocol == 'file:') {
     var ws = new WebSocket(wsurl);
 } else {
     var ws = new WebSocket(wssurl);
