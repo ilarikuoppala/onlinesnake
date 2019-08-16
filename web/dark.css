@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
+
 * {
     color: white;
+    font-family: 'Blinker', sans-serif;
 }
 
 html {
     background-color: hsl(224, 12%, 13%);
 }
 
-h1 {
+h1, h2, h3 {
     color: white;
+    font-family: 'Blinker', sans-serif;
 }

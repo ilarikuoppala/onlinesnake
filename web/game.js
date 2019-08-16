@@ -1,5 +1,7 @@
 "use strict";
 
+var storage = window.localStorage;
+
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
 if (location.protocol == 'file:') {
@@ -34,17 +36,22 @@ canvas.addEventListener('keydown', function(event) {
 
 var ctx = canvas.getContext("2d");
 
+const userThemeSelection = storage.getItem('theme');
 var theme = classicTheme;
+changeTheme(userThemeSelection);
 
 var blocksize = 10;
-var headcolor = theme.headColor;
-var bodycolor = theme.bodyColor;
-var bgcolor = theme.background;
-var textColor = theme.textColor;
+var headcolor;
+var bodycolor;
+var bgcolor;
+var textColor;
 var offset = 20;
 
-ctx.fillStyle = bgcolor;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+function drawBackgroundColor() {
+    ctx.fillStyle = bgcolor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawborders();
+}
 
 if (location.protocol == 'http:' || location.protocol == 'file:') {
     var ws = new WebSocket(wsurl);
@@ -54,7 +61,7 @@ if (location.protocol == 'http:' || location.protocol == 'file:') {
 
 ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
-    drawsquare(data.treats[0], 'blue');
+    drawsquare(data.treats[0], theme.treatColor);
     drawscore(data.scores);
     for (var i=0; i < data.clear.length; i++) {
         drawsquare(data.clear[i], bgcolor);
@@ -67,7 +74,7 @@ ws.onmessage = function (event) {
     }
 };
 
-var drawborders = function() {
+function drawborders() {
     ctx.fillStyle = 'grey';
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize * 52, blocksize);
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize, blocksize*52);
@@ -92,5 +99,27 @@ var drawscore = function(scores) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
     }
 };
+
+function changeTheme(newTheme) {
+    if (newTheme === 'classic') {
+        setThemeVariables(classicTheme);
+    } else if (newTheme === 'dark') {
+        setThemeVariables(darkTheme);
+    } else {
+        return false;
+    }
+    drawBackgroundColor();
+    const cssElement = document.getElementById('theme-css');
+    cssElement.href = theme.css;
+    storage.setItem('theme', theme.name);
+}
+
+function setThemeVariables(themeObject) {
+    theme = themeObject;
+    headcolor = theme.headColor;
+    bodycolor = theme.bodyColor;
+    bgcolor = theme.background;
+    textColor = theme.textColor;
+}
 document.body.appendChild(canvas);
 canvas.focus();
