@@ -40,13 +40,13 @@ ws.onmessage = function (event) {
     drawscore(data.scores);
     for (var i=0; i < data.clear.length; i++) {
         drawsquare(data.clear[i], bgcolor);
-    };
+    }
     for (var i=0; i < data.worms.length; i++) {
         var worm = data.worms[i];
         drawsquare(worm.newhead, headcolor);
         drawsquare(worm.oldhead, bodycolor);
         drawsquare(worm.tail, bgcolor);
-    };
+    }
 };
 
 var drawborders = function() {
@@ -72,7 +72,7 @@ var drawscore = function(scores) {
     ctx.font = "20px Arial";
     for (var i=0; i < scores.length; i++) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
-    };
+    }
 };
 document.body.appendChild(canvas);
 canvas.focus();
