@@ -1,3 +1,5 @@
+"use strict";
+
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
 if (location.protocol == 'file:') {
