@@ -3,7 +3,7 @@
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
 if (location.protocol == 'file:') {
-    var wsurl = "ws://localhost:8080/websocket/";
+    var wsurl = "ws://localhost:8765/websocket/";
 }
 
 const dpi = window.devicePixelRatio || 1;
@@ -32,11 +32,19 @@ canvas.addEventListener('keydown', function(event) {
     event.preventDefault();
 });
 
+var ctx = canvas.getContext("2d");
+
+var theme = classicTheme;
+
 var blocksize = 10;
-var headcolor = 'red';
-var bodycolor = 'lightred';
-var bgcolor = 'white';
+var headcolor = theme.headColor;
+var bodycolor = theme.bodyColor;
+var bgcolor = theme.background;
+var textColor = theme.textColor;
 var offset = 20;
+
+ctx.fillStyle = bgcolor;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 if (location.protocol == 'http:' || location.protocol == 'file:') {
     var ws = new WebSocket(wsurl);
@@ -78,7 +86,7 @@ var drawsquare = function(coords, color) {
 var drawscore = function(scores) {
     ctx.fillStyle = bgcolor;
     ctx.fillRect(blocksize*54, blocksize*2, 500, 500);
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = textColor;
     ctx.font = "20px Arial";
     for (var i=0; i < scores.length; i++) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
