@@ -6,9 +6,19 @@ if (location.protocol == 'file:') {
     var wsurl = "ws://localhost:8080/websocket/";
 }
 
+const dpi = window.devicePixelRatio || 1;
+const canvasWidth = 800;
+const canvasHeight = 540;
+
 var canvas = document.createElement('canvas');
-canvas.setAttribute('width', 800);
-canvas.setAttribute('height', 540);
+canvas.setAttribute('width', canvasWidth * dpi);
+canvas.setAttribute('height', canvasHeight * dpi);
+canvas.style.width = canvasWidth + "px";
+canvas.style.height = canvasHeight + "px";
+
+var ctx = canvas.getContext("2d");
+ctx.scale(dpi, dpi);
+
 canvas.setAttribute('tabindex', 1);
 canvas.setAttribute('id', 'game-canvas')
 canvas.addEventListener('keydown', function(event) {
@@ -21,8 +31,6 @@ canvas.addEventListener('keydown', function(event) {
     ws.send(event.key);
     event.preventDefault();
 });
-
-var ctx = canvas.getContext("2d");
 
 var blocksize = 10;
 var headcolor = 'red';
