@@ -13,7 +13,7 @@ canvas.addEventListener('keydown', function(event) {
     if (event.key == 'F5') {
         location.reload();
     };
-    if (event.key == 'r') {
+    if (event.key == 'r' || event.key == 'R') {
         location.reload();
     };
     ws.send(event.key);
