@@ -8,7 +8,7 @@ var canvas = document.createElement('canvas');
 canvas.setAttribute('width', 800);
 canvas.setAttribute('height', 540);
 canvas.setAttribute('tabindex', 1);
-canvas.setAttribute('id', 'game-canvas')
+canvas.setAttribute('id', 'game-canvas');
 canvas.addEventListener('keydown', function(event) {
     if (event.key == 'F5') {
         location.reload();
@@ -36,7 +36,7 @@ if (location.protocol == 'http:' || location.protocol == 'file:') {
 
 ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
-    drawsquare(data.treats[0], 'blue')
+    drawsquare(data.treats[0], 'blue');
     drawscore(data.scores);
     for (var i=0; i < data.clear.length; i++) {
         drawsquare(data.clear[i], bgcolor);
@@ -51,10 +51,10 @@ ws.onmessage = function (event) {
 
 var drawborders = function() {
     ctx.fillStyle = 'grey';
-    ctx.fillRect(offset - blocksize, offset -blocksize, blocksize * 52, blocksize)
-    ctx.fillRect(offset - blocksize, offset -blocksize, blocksize, blocksize*52)
-    ctx.fillRect(offset + blocksize*50, offset -blocksize, blocksize, blocksize * 52)
-    ctx.fillRect(offset - blocksize, offset + blocksize * 50, blocksize * 52, blocksize)
+    ctx.fillRect(offset - blocksize, offset -blocksize, blocksize * 52, blocksize);
+    ctx.fillRect(offset - blocksize, offset -blocksize, blocksize, blocksize*52);
+    ctx.fillRect(offset + blocksize*50, offset -blocksize, blocksize, blocksize * 52);
+    ctx.fillRect(offset - blocksize, offset + blocksize * 50, blocksize * 52, blocksize);
 };
 drawborders();
 
@@ -67,7 +67,7 @@ var drawsquare = function(coords, color) {
 
 var drawscore = function(scores) {
     ctx.fillStyle = bgcolor;
-    ctx.fillRect(blocksize*54, blocksize*2, 500, 500)
+    ctx.fillRect(blocksize*54, blocksize*2, 500, 500);
     ctx.fillStyle = 'black';
     ctx.font = "20px Arial";
     for (var i=0; i < scores.length; i++) {
