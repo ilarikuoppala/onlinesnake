@@ -21,5 +21,9 @@ class Theme {
 }
 
 classicTheme = new Theme();
-darkTheme = new Theme('dark', 'dark.css', '#1D1F26', 'white', '#86ADE1');
+darkTheme = new Theme('dark');
+darkTheme.css = 'dark.css';
+darkTheme.background = '#1D1F26';
+darkTheme.textColor = 'white';
+darkTheme.treatColor = '#86ADE1';
 themesAvailable = ["classic", "dark"];
