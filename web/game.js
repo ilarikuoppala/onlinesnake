@@ -5,7 +5,7 @@ var storage = window.localStorage;
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
 if (location.protocol == 'file:') {
-    var wsurl = "ws://localhost:8765/websocket/";
+    var wsurl = "ws://localhost:8080/websocket/";
 }
 
 const dpi = window.devicePixelRatio || 1;
