@@ -41,14 +41,10 @@ var theme = classicTheme;
 changeTheme(userThemeSelection);
 
 var blocksize = 10;
-var headcolor;
-var bodycolor;
-var bgcolor;
-var textColor;
 var offset = 20;
 
 function drawBackgroundColor() {
-    ctx.fillStyle = bgcolor;
+    ctx.fillStyle = theme.background;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     drawborders();
 }
@@ -64,13 +60,13 @@ ws.onmessage = function (event) {
     drawsquare(data.treats[0], theme.treatColor);
     drawscore(data.scores);
     for (var i=0; i < data.clear.length; i++) {
-        drawsquare(data.clear[i], bgcolor);
+        drawsquare(data.clear[i], theme.background);
     }
     for (var i=0; i < data.worms.length; i++) {
         var worm = data.worms[i];
-        drawsquare(worm.newhead, headcolor);
-        drawsquare(worm.oldhead, bodycolor);
-        drawsquare(worm.tail, bgcolor);
+        drawsquare(worm.newhead, theme.headColor);
+        drawsquare(worm.oldhead, theme.bodyColor);
+        drawsquare(worm.tail, theme.background);
     }
 };
 
@@ -91,9 +87,9 @@ var drawsquare = function(coords, color) {
 };
 
 var drawscore = function(scores) {
-    ctx.fillStyle = bgcolor;
+    ctx.fillStyle = theme.background;
     ctx.fillRect(blocksize*54, blocksize*2, 500, 500);
-    ctx.fillStyle = textColor;
+    ctx.fillStyle = theme.textColor;
     ctx.font = "20px Arial";
     for (var i=0; i < scores.length; i++) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
@@ -102,9 +98,9 @@ var drawscore = function(scores) {
 
 function changeTheme(newTheme) {
     if (newTheme === 'classic') {
-        setThemeVariables(classicTheme);
+        theme = classicTheme;
     } else if (newTheme === 'dark') {
-        setThemeVariables(darkTheme);
+        theme = darkTheme;
     } else {
         return false;
     }
@@ -114,12 +110,5 @@ function changeTheme(newTheme) {
     storage.setItem('theme', theme.name);
 }
 
-function setThemeVariables(themeObject) {
-    theme = themeObject;
-    headcolor = theme.headColor;
-    bodycolor = theme.bodyColor;
-    bgcolor = theme.background;
-    textColor = theme.textColor;
-}
 document.body.appendChild(canvas);
 canvas.focus();
