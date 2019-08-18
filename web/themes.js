@@ -17,6 +17,7 @@ class Theme {
         this.bodyColor = bodyColor;
         this.otherColor = otherColor;
         this.otherHead = otherHead;
+        this.font = '20px Arial';
     }
 }
 
@@ -26,4 +27,5 @@ darkTheme.css = 'dark.css';
 darkTheme.background = '#1D1F26';
 darkTheme.textColor = 'white';
 darkTheme.treatColor = '#86ADE1';
+darkTheme.font = '20px Blinker';
 themesAvailable = ["classic", "dark"];

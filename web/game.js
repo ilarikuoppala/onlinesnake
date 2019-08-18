@@ -90,7 +90,7 @@ var drawscore = function(scores) {
     ctx.fillStyle = theme.background;
     ctx.fillRect(blocksize*54, blocksize*2, 500, 500);
     ctx.fillStyle = theme.textColor;
-    ctx.font = "20px Arial";
+    ctx.font = theme.font;
     for (var i=0; i < scores.length; i++) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
     }
