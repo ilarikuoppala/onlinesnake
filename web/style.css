@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Blinker;
+    src: url('assets/fonts/blinker/Blinker-Regular.ttf');
+}
+
+@font-face {
+    font-family: PressStart;
+    src: url('assets/fonts/press-start/PressStart2P-Regular.ttf');
+}
+
 #game-canvas {
     margin: auto;
     pad: 0;

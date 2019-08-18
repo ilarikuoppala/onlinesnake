@@ -1,8 +1,3 @@
-@font-face {
-    font-family: Blinker;
-    src: url('assets/fonts/blinker/Blinker-Regular.ttf');
-}
-
 * {
     color: white;
     font-family: 'Blinker', sans-serif;
