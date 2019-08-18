@@ -24,9 +24,20 @@ darkTheme.css = 'dark.css';
 darkTheme.background = '#1D1F26';
 darkTheme.textColor = 'white';
 darkTheme.treatColor = '#86ADE1';
-darkTheme.font = '20px Blinker';
+darkTheme.font = blinker;
+
+var neonTheme = new Theme('neon');
+neonTheme.css = 'neon.css';
+neonTheme.background = '#782FFF';
+neonTheme.borderColor = '#F9FF77';
+neonTheme.textColor = '#F9FF77';
+neonTheme.treatColor = '#F9FF77';
+neonTheme.font = '16px PressStart';
+neonTheme.headColor = '#FF35A3';
+neonTheme.bodyColor = '#FF4FAF';
 
 themes = {
     'classic': classicTheme, 
-    'dark': darkTheme
+    'dark': darkTheme,
+    'neon': neonTheme
 };
