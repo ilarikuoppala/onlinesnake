@@ -1,23 +1,19 @@
+const arial = '20px Arial';
+const blinker = '20px Blinker';
+
 class Theme {
-    constructor(name = 'classic',
-        css = 'classic.css',
-        background = 'white',
-        textColor = 'black',
-        treatColor = 'blue',
-        headColor = 'red',
-        bodyColor = 'lightred',
-        otherColor = 'blue',
-        otherHead = 'lightblue') {
+    constructor(name = 'classic') {
         this.name = name;
-        this.css = css;
-        this.background = background;
-        this.textColor = textColor;
-        this.treatColor = treatColor;
-        this.headColor = headColor;
-        this.bodyColor = bodyColor;
-        this.otherColor = otherColor;
-        this.otherHead = otherHead;
-        this.font = '20px Arial';
+        this.css = 'classic.css';
+        this.background = 'white';
+        this.borderColor = 'grey';
+        this.textColor = 'black';
+        this.treatColor = 'blue';
+        this.headColor = 'red';
+        this.bodyColor = 'lightred';
+        this.otherColor = 'blue';
+        this.otherHead = 'lightblue';
+        this.font = arial;
     }
 }
 

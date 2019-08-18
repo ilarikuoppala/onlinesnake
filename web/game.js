@@ -71,7 +71,7 @@ ws.onmessage = function (event) {
 };
 
 function drawborders() {
-    ctx.fillStyle = 'grey';
+    ctx.fillStyle = theme.borderColor;
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize * 52, blocksize);
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize, blocksize*52);
     ctx.fillRect(offset + blocksize*50, offset -blocksize, blocksize, blocksize * 52);
