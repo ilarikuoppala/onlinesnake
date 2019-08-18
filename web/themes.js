@@ -21,11 +21,16 @@ class Theme {
     }
 }
 
-classicTheme = new Theme();
-darkTheme = new Theme('dark');
+var classicTheme = new Theme();
+
+var darkTheme = new Theme('dark');
 darkTheme.css = 'dark.css';
 darkTheme.background = '#1D1F26';
 darkTheme.textColor = 'white';
 darkTheme.treatColor = '#86ADE1';
 darkTheme.font = '20px Blinker';
-themesAvailable = ["classic", "dark"];
+
+themes = {
+    'classic': classicTheme, 
+    'dark': darkTheme
+};

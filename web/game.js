@@ -37,7 +37,7 @@ canvas.addEventListener('keydown', function(event) {
 var ctx = canvas.getContext("2d");
 
 const userThemeSelection = storage.getItem('theme');
-var theme = classicTheme;
+var theme = themes["classic"]; // The default theme
 changeTheme(userThemeSelection);
 
 var blocksize = 10;
@@ -96,13 +96,12 @@ var drawscore = function(scores) {
     }
 };
 
-function changeTheme(newTheme) {
-    if (newTheme === 'classic') {
-        theme = classicTheme;
-    } else if (newTheme === 'dark') {
-        theme = darkTheme;
-    } else {
+function changeTheme(newThemeName) {
+    const newTheme = themes[newThemeName];
+    if (newTheme == null) {
         return false;
+    } else {
+        theme = newTheme;
     }
     drawBackgroundColor();
     const cssElement = document.getElementById('theme-css');
