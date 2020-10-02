@@ -84,5 +84,15 @@ var drawscore = function(scores) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
     }
 };
+
+const resizeCanvas = () => {
+    const displayWidth = Math.min(canvasWidth, document.documentElement.clientWidth * 0.95);
+    canvas.style.width =  displayWidth + "px";
+    canvas.style.height = displayWidth * (canvasHeight/canvasWidth) + 'px'
+};
+
+window.onresize = resizeCanvas;
+resizeCanvas();
+
 document.body.appendChild(canvas);
 canvas.focus();
