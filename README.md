@@ -12,7 +12,7 @@ In project repository, run `docker-compose up`. After the container is ready, na
 #### Without Docker
 In project repository:
 ```bash
-virtualenv -p python3 venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 snake.py
