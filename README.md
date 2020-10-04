@@ -7,7 +7,7 @@ This project was started when I was volunteering at the [Junction 2018](https://
 
 ### Development setup
 #### Docker container
-In project repository, run `docker-compose up`. After the container is ready, navigate to [localhost:8080](http://localhost:8080) using your web browser. If you make changes to web files (client), refresh the web page to see the effect. If you change server files (python), restart the docker container to see changes.
+In project repository, run `docker-compose up`. After the container is ready, navigate to [localhost:8080](http://localhost:8080) using your web browser. If you make changes to web files (client), refresh the web page to see the effect. If you change server files (python), rebuild and restart the docker container to see changes.
 
 #### Without Docker
 In project repository:
