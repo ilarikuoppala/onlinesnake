@@ -6,14 +6,21 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>Snake</title>
         <link rel='stylesheet' href='style.css' type='text/css'>
+        <link rel='stylesheet' href='theme.css' type='text/css' id='theme-css'>
         <script src='controls.js'></script>
     </head>
     <body>
         <h1 id='main-heading'>onlinesnake.fun</h1>
+        <script src='themes.js'></script>
         <script src='game.js'></script>
         <noscript>JavaScript has to be enabled to play this game.</noscript>
-        <a href="#" id="controls-toggle">Show mobile controls</a>
         <div id="controls"></div>
+        <h2>Options</h2>
+        <h3>Theme</h3>
+        <span id='classic-theme' onclick='changeTheme("classic")'>Classic</span> | 
+        <span id='dark-theme' onclick='changeTheme("dark")'>Dark</span> |
+        <span id='neon-theme' onclick='changeTheme("neon")'>Neon</span>
+        <a href="#" id="controls-toggle">Show mobile controls</a>
         <footer>
             <a href='https://github.com/ilarikuoppala/onlinesnake'>GitHub</a>
         </footer>

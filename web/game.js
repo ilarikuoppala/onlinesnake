@@ -1,5 +1,7 @@
 "use strict";
 
+var storage = window.localStorage;
+
 var wssurl = "wss://" + location.host + '/websocket/';
 var wsurl = "ws://" + location.host + '/websocket/';
 if (location.protocol == 'file:') {
@@ -32,11 +34,20 @@ canvas.addEventListener('keydown', function(event) {
     event.preventDefault();
 });
 
+var ctx = canvas.getContext("2d");
+
+const userThemeSelection = storage.getItem('theme');
+var theme = themes["classic"]; // The default theme
+changeTheme(userThemeSelection);
+
 var blocksize = 10;
-var headcolor = 'red';
-var bodycolor = 'lightred';
-var bgcolor = 'white';
 var offset = 20;
+
+function drawBackgroundColor() {
+    ctx.fillStyle = theme.background;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawborders();
+}
 
 if (location.protocol == 'http:' || location.protocol == 'file:') {
     var ws = new WebSocket(wsurl);
@@ -46,21 +57,21 @@ if (location.protocol == 'http:' || location.protocol == 'file:') {
 
 ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
-    drawsquare(data.treats[0], 'blue');
+    drawsquare(data.treats[0], theme.treatColor);
     drawscore(data.scores);
     for (var i=0; i < data.clear.length; i++) {
-        drawsquare(data.clear[i], bgcolor);
+        drawsquare(data.clear[i], theme.background);
     }
     for (var i=0; i < data.worms.length; i++) {
         var worm = data.worms[i];
-        drawsquare(worm.newhead, headcolor);
-        drawsquare(worm.oldhead, bodycolor);
-        drawsquare(worm.tail, bgcolor);
+        drawsquare(worm.newhead, theme.headColor);
+        drawsquare(worm.oldhead, theme.bodyColor);
+        drawsquare(worm.tail, theme.background);
     }
 };
 
-var drawborders = function() {
-    ctx.fillStyle = 'grey';
+function drawborders() {
+    ctx.fillStyle = theme.borderColor;
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize * 52, blocksize);
     ctx.fillRect(offset - blocksize, offset -blocksize, blocksize, blocksize*52);
     ctx.fillRect(offset + blocksize*50, offset -blocksize, blocksize, blocksize * 52);
@@ -76,14 +87,27 @@ var drawsquare = function(coords, color) {
 };
 
 var drawscore = function(scores) {
-    ctx.fillStyle = bgcolor;
+    ctx.fillStyle = theme.background;
     ctx.fillRect(blocksize*54, blocksize*2, 500, 500);
-    ctx.fillStyle = 'black';
-    ctx.font = "20px Arial";
+    ctx.fillStyle = theme.textColor;
+    ctx.font = theme.font;
     for (var i=0; i < scores.length; i++) {
         ctx.fillText(scores[i], blocksize*54, blocksize*4+20*i);
     }
 };
+
+function changeTheme(newThemeName) {
+    const newTheme = themes[newThemeName];
+    if (newTheme == null) {
+        return false;
+    } else {
+        theme = newTheme;
+    }
+    drawBackgroundColor();
+    const cssElement = document.getElementById('theme-css');
+    cssElement.href = theme.css;
+    storage.setItem('theme', theme.name);
+}
 
 const resizeCanvas = () => {
     const displayWidth = Math.min(canvasWidth, document.documentElement.clientWidth * 0.95);

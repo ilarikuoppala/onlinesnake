@@ -1,0 +1,13 @@
+* {
+    color: white;
+    font-family: 'Blinker', sans-serif;
+}
+
+html {
+    background-color: hsl(224, 12%, 13%);
+}
+
+h1, h2, h3 {
+    color: white;
+    font-family: 'Blinker', sans-serif;
+}
