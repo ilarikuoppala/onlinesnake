@@ -4,7 +4,7 @@
     display: block;
 }
 
-#main-heading, footer {
+#main-heading, footer, h2, h3, * {
     text-align: center;
 }
 
